@@ -17,9 +17,9 @@ import { toast } from "react-toastify";
 window.Buffer = Buffer;
 
 const PROGRAM_ID = new PublicKey(
-  "ChompZg47TcVy5fk2LxPEpW6SytFYBES5SHoqgrm8A4D"
+  "6zJv37uWY5xnENKDsdss6jMLE3ixMCjSdtHUu7fMRddF"
 );
-const FEE = new PublicKey("EGJnqcxVbhJFJ6Xnchtaw8jmPSvoLXfN2gWsY9Etz5SZ");
+const FEE = new PublicKey("JB4EwmvDPcjBAx6t9JSYPvYRfz73hSioogGcGRXkv8ok");
 
 type GameState = {
   eaten: boolean[][];
@@ -228,9 +228,14 @@ function App() {
       console.log(
         `https://explorer.solana.com/tx/${signature}?cluster=custom&customUrl=http%3A%2F%2Flocalhost%3A8899`
       );
+    } else if (connection.rpcEndpoint.includes("eclipsenetwork")) {
+      console.log(
+          `https://solscan.io/tx/${signature}?cluster=custom&customUrl=https%3A%2F%2Fstaging-rpc.dev.eclipsenetwork.xyz`
+      );
     } else {
       console.log(`https://solscan.io/tx/${signature}`);
     }
+    
 
     await connection
       .confirmTransaction(signature, "confirmed")
